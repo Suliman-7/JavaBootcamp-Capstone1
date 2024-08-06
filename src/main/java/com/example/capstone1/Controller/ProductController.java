@@ -59,14 +59,7 @@ public class ProductController {
         return ResponseEntity.status(400).body(new ApiResponse("Product not found"));
     }
 
-    @PutMapping("/discount/{pid}/{discount}")
-    public ResponseEntity discountProduct(@PathVariable int pid, @PathVariable double discount) {
-        boolean isDiscount = productService.discountProduct(pid, discount);
-        if (isDiscount) {
-            return ResponseEntity.status(200).body(new ApiResponse("Product price discount successfully"));
-        }
-        return ResponseEntity.status(400).body(new ApiResponse("Product not found"));
-    }
+
 
     @GetMapping("/getbycategory/{cid}")
     public ResponseEntity getProductByCategory(@PathVariable int cid) {
