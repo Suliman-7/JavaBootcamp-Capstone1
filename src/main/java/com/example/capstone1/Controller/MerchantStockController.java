@@ -66,5 +66,14 @@ public class MerchantStockController {
 
     }
 
+    @PutMapping("/discount/{pid}/{mid}/{discount}")
+    public ResponseEntity discountProduct(@PathVariable int pid, @PathVariable int mid ,  @PathVariable double discount) {
+        String discount1 = merchantStockService.discountProduct(pid, mid , discount);
+        if (discount1.equalsIgnoreCase("Product discount successfully")) {
+            return ResponseEntity.status(200).body(new ApiResponse(discount1));
+        }
+        return ResponseEntity.status(400).body(new ApiResponse(discount1));
+    }
+
 
 }
