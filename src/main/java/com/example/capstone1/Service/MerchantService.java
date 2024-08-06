@@ -16,8 +16,6 @@ public class MerchantService {
 
     ArrayList<Merchant> merchants = new ArrayList<>();
 
-    private final MerchantStockService merchantStockService;
-    private final ProductService productService;
 
 
 
