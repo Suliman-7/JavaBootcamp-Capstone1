@@ -190,15 +190,21 @@ public class UserService {
 
 
 
-    public boolean addBalance(int uid , int amount) {
-        boolean foundUser = false;
+    public String addBalance(int uid , int amount) {
+        int indexUser = -1;
+
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == uid) {
-                users.get(i).setBalance(users.get(i).getBalance() + amount);
-                return true;
+                if(users.get(indexUser).getRole().equalsIgnoreCase("Admin")){
+                    return "You can't add balance because you are Admin";
+                }
+                else {
+                    users.get(i).setBalance(users.get(i).getBalance() + amount);
+                    return "balance added successfully";
+                }
             }
         }
-        return foundUser;
+        return "User Not Found";
     }
 
 
