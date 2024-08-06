@@ -1,6 +1,7 @@
 package com.example.capstone1.Service;
 
 import com.example.capstone1.Model.Category;
+import com.example.capstone1.Model.MerchantStock;
 import com.example.capstone1.Model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class ProductService {
 
     ArrayList<Product> products = new ArrayList<>();
     private final CategoryService categoryService;
+
 
     public ArrayList<Product> getAllProducts() {
         return products;
@@ -46,19 +48,6 @@ public class ProductService {
             }
         }
         return false;
-    }
-
-
-    public boolean discountProduct(int pid , double discount) {
-        boolean founndProduct = false;
-        double percentage = discount / 100;
-        for (int i = 0; i < products.size(); i++) {
-            if(products.get(i).getId() == pid){
-                products.get(i).setPrice(products.get(i).getPrice()-(percentage*products.get(i).getPrice()));
-                founndProduct = true;
-            }
-        }
-        return founndProduct;
     }
 
 
