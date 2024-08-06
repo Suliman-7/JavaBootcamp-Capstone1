@@ -79,11 +79,11 @@ public class UserController {
 
     @PutMapping("/addbalance/{uid}/{amount}")
     public ResponseEntity addBalance(@PathVariable int uid, @PathVariable int amount) {
-        boolean isAdded = userService.addBalance(uid, amount);
-        if (isAdded) {
-            return ResponseEntity.status(200).body(new ApiResponse("balance added successfully"));
+        String add = userService.addBalance(uid, amount);
+        if (add.equalsIgnoreCase("balance added successfully")) {
+            return ResponseEntity.status(200).body(new ApiResponse(add));
         }
-        return ResponseEntity.status(400).body(new ApiResponse("User not found"));
+        return ResponseEntity.status(400).body(new ApiResponse(add));
     }
 
     @PutMapping("/addtocart/{uid}/{pid}")
