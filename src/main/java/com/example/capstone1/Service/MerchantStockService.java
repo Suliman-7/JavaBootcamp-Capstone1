@@ -50,6 +50,23 @@ public class MerchantStockService {
     }
 
 
+    public String discountProduct(int pid , int mid ,  double discount) {
+        double percentage = discount / 100;
+
+        for(MerchantStock merstock : merchantStocks){
+            if(merstock.getProductId()==pid && merstock.getMerchantId()==mid){
+                for (int i = 0; i < productService.getAllProducts().size(); i++) {
+                    if(productService.getAllProducts().get(i).getId() == pid){
+                        productService.getAllProducts().get(i).setPrice(productService.getAllProducts().get(i).getPrice()-(percentage*productService.getAllProducts().get(i).getPrice()));
+                        return "Product discount successfully";
+                    }
+                }
+            }
+        }
+        return "invalid prodect id or merchant id";
+    }
+
+
     public String addStocks(int pid , int mid , int amount) {
 
         boolean foundMerchant = false;
